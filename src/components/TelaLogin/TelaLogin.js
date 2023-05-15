@@ -1,8 +1,11 @@
 import { Form, FormContainer, Input, SendButton, StyledLabel, RegisterButton } from "./styled";
 
 function TelaLogin(props) {
-  const login = () => {
+  const login = (event) => {
     // fluxo de login (ainda veremos)
+    const email = event.target.email.value
+    const senha = event.target.senha.value
+    console.log({email, senha});
     props.mudarTela("TelaPrincipal")
   }
 
@@ -14,16 +17,16 @@ function TelaLogin(props) {
     <FormContainer >
       <h1>LOGIN</h1>
 
-      <Form>
+      <Form onSubmit={login}>
         <StyledLabel>E-mail:
-          <Input />
+          <Input id="email" name ="email"/>
         </StyledLabel>
 
         <StyledLabel>Senha:
-          <Input type={"password"} />
+          <Input type={"password"}  id="senha" name ="senha" />
         </StyledLabel>
 
-        <SendButton onClick={login}>Entrar</SendButton>
+        <SendButton type="submit">Entrar</SendButton>
 
         <RegisterButton onClick={mostrarTelaCadastro}>Cadastre-se</RegisterButton>
       </Form>
